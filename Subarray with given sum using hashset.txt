@@ -1,0 +1,42 @@
+
+import java.util.HashMap;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		int []a={10,15,-5,15,-10,5};
+        int n=a.length;
+        int sum=5;
+        int cursum=0;
+        int s=0;
+        int e=-1;
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        for(int i=0;i<n;i++){
+            cursum=cursum+a[i];
+        
+        if(cursum-sum==0){
+            s=0;
+            e=i;
+            break;
+        }
+        if(hm.containsKey(cursum-sum)){
+      s=hm.get(cursum-sum)+1;
+          e=i;
+         break;
+        }
+        hm.put(cursum,i);
+
+	}
+    if(e==-1){
+        System.out.println("not found");
+    }
+else{
+    System.out.println(s+" "+e);
+}
+}
+}
+
