@@ -1,0 +1,31 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		int []a={1,2,3,4,-2,-3,5,6,7};
+        int msf=Integer.MIN_VALUE;
+        int meh=0;
+        int si=0,ei=0,s=0;
+        for(int i=0;i<a.length;i++){
+            meh=meh+a[i];
+            if(msf<meh){
+                msf=meh;
+                si=s;
+                ei=i;
+            }
+            if(meh<0){
+                meh=0;
+                s=i+1;
+            }
+        }
+        System.out.println(msf);
+        System.out.println(si+" "+ei);
+	}
+}
+
