@@ -1,0 +1,9 @@
+  Scanner sc=new Scanner(System.in);
+        int A=sc.nextInt();
+        int B=sc.nextInt();
+        long pow=1;
+        for(int i=1;i<=B;i++){
+            pow=pow*A;
+        }
+        System.out.print(pow);
+ }
