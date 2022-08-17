@@ -1,0 +1,48 @@
+public class Solution {
+    public int solve(int A, int[][] B) {
+   ArrayList < Integer > [] g = new ArrayList[A + 1];
+    for (int i = 1; i <= A; i++) {
+      g[i] = new ArrayList < > ();
+    }
+
+    for (int i = 0; i < B.length; i++) {
+      int u = B[i][0];
+      int v = B[i][1];
+      g[u].add(v);
+      g[v].add(u);
+    }
+
+    int C = connectedComponent(A, g);
+    int E = B.length;
+    int N = A;
+
+    if (E > N - C) return 1;
+    else return 0;
+  }
+
+  private int connectedComponent(int N, ArrayList < Integer > [] g) {
+    int count = 0;
+    boolean[] vis = new boolean[N + 1];
+    for (int i = 1; i <= N; i++) {
+      if (vis[i] == false) {
+        DFS(g, vis, i);
+        count++;
+      }
+    }
+    return count;
+  }
+
+  private void DFS(ArrayList < Integer > [] g, boolean[] vis, int s) {
+    if (vis[s] == true) {
+      return;
+    }
+
+    vis[s] = true;
+
+    for (int i = 0; i < g[s].size(); i++) {
+      int v = g[s].get(i);
+      DFS(g, vis, v);
+    }
+  }
+}
+    
