@@ -1,0 +1,48 @@
+public int[] solve(int A,int[][] B){
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<ArrayList<Integer>>();
+        int[] topo=new int[A];
+        adj=createAdj(A, B);
+        int indeg[] = new int[A+1];
+        for(int i = 1;i<=A;i++) {
+            for(Integer it: adj.get(i)) {
+                indeg[it]++;
+            }
+        }
+
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+       
+        for (int i = 1; i < indeg.length; i++) {
+            if (indeg[i] == 0) {
+                q.add(i);
+            }
+        }
+        int count = 0;
+        int ind=0;
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            topo[ind++]=u;
+            for (int i : adj.get(u)) {
+                indeg[i]--;
+                if (indeg[i] == 0) {
+                    q.add(i);
+                }
+            }
+            count++;
+        }
+        if(count<A){
+            return new int[0];
+        }
+        return topo;
+    }
+
+    public ArrayList<ArrayList<Integer>> createAdj(int A,int[][] B){
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<ArrayList<Integer>>();
+        for(int i=0;i<=A;i++){
+            adj.add(new ArrayList<Integer> ());
+        }
+        for(int i=0;i<B.length;i++){
+            adj.get(B[i][0]).add(B[i][1]);
+        }
+        return adj;
+    }
+}

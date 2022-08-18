@@ -1,0 +1,56 @@
+public class Solution {
+    static class Pair{
+        int x;
+        int y;
+        public Pair(int i,int j){
+            this.x=i;
+            this.y=j;
+        }
+    }
+
+    public int solve(int[][] A) {
+        int n=A.length;
+        int m=A[0].length;
+        Queue<Pair>q=new LinkedList<>();
+        int time[][]= new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(A[i][j]==2){
+                    time[i][j]=0;
+                    q.add(new Pair(i,j));
+                }
+                else{
+                    time[i][j]=-1;
+                }
+            }
+        }
+        int[] x={-1,1,0,0};
+        int []y={0,0,1,-1};
+        while(!q.isEmpty()){
+            Pair curr=q.poll();
+            int i=curr.x;
+            int j=curr.y;
+            for(int k=0;k<x.length;k++){
+                int a=i+x[k];
+                int b=j+y[k];
+                if(a>=0 && a<n && b>=0 && b<m && A[a][b]==1){
+                    q.add(new Pair(a,b));
+                    A[a][b]=2;
+                    time[a][b]=time[i][j]+1;
+                }
+            }
+        }
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<A.length;i++){
+            for(int j=0;j<A[0].length;j++){
+                if(time[i][j]==-1&&A[i][j]==1){
+                    return -1;
+                }
+                else{
+                    max=Math.max(max,time[i][j]);
+                }
+            }
+        }
+        return max;
+    }
+}

@@ -1,0 +1,47 @@
+public class Solution {
+    public int solve(int A, int[][] B) {
+    
+
+
+     ArrayList < Integer > [] g = buildAdjacencyList(A, B);
+    boolean[] vis = new boolean[A + 1];
+    for (int i = 1; i <= A; i++) {
+      if (vis[i] == false) {
+        BFS(g, 1, A, vis);
+      }
+    }
+
+    boolean isPath = vis[A];
+    return isPath ? 1 : 0;
+  }
+
+  private void BFS(ArrayList < Integer > [] g, int s, int d, boolean[] vis) {
+    Queue < Integer > q = new LinkedList < > ();
+    q.add(s);
+    vis[s] = true;
+    while (q.size() > 0) {
+      int u = q.poll();
+
+      for (int i = 0; i < g[u].size(); i++) {
+        int v = g[u].get(i);
+        if (vis[v] == false) {
+          q.add(v);
+          vis[v] = true;
+        }
+      }
+    }
+  }
+
+  private ArrayList<Integer>[] buildAdjacencyList(int A,int[][] B) {
+    ArrayList < Integer > [] g = new ArrayList[A + 1];
+    for (int i = 0; i <= A; i++) {
+      g[i] = new ArrayList < Integer > ();
+    }
+    for (int i = 0; i < B.length; i++) {
+      int u = B[i][0];
+      int v = B[i][1];
+      g[u].add(v);
+    }
+    return g;
+  }
+}
