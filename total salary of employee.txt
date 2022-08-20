@@ -1,0 +1,21 @@
+
+public class Solution {
+	public static int totalSalary(int basic, char grade) {
+		double hra=0.2*basic,pf=0.11*basic;
+        double da=0.5*basic;
+        double allowance,ts;
+        if(grade=='A'){
+            allowance=1700;
+        }
+        else if(grade=='B'){
+            allowance=1500;
+        }
+        else{
+            allowance=1300;
+        }
+        ts=basic+hra+da+allowance-pf;
+        double res=Math.round(ts);
+        int result=(int) res;
+        return result;
+	}
+}
