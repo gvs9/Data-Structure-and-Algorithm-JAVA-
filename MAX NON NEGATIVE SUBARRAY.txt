@@ -1,0 +1,38 @@
+public class Solution {
+    public int[] maxset(int[] A) {
+        int startind=0;
+        int endind=0;
+        long currsum=0;
+        long maxsum=Integer.MIN_VALUE;
+        int currsumstart=0;
+        int currsumend=0;
+        for(int i=0;i<A.length;i++){
+            if(A[i]<0){
+                currsum=0;
+                currsumstart=i+1;
+                currsumend=i+1;
+            }
+            else{
+                currsum=currsum+A[i];
+                currsumend=i;
+            if(currsum>maxsum || (currsum==maxsum && currsumend-currsumstart> endind-startind)){
+             startind=currsumstart;
+             endind=currsumend;
+             maxsum=currsum;
+            }
+            
+        }
+        }
+    int[] answer = new int[endind- startind+ 1];
+        int j = 0;
+        for (int i = startind; i <= endind; i++) {
+            answer[j++] = A[i];
+        }
+
+        
+        if (answer[0] < 0) {
+            answer = new int[] {};
+        }
+        return answer;
+    }
+}
