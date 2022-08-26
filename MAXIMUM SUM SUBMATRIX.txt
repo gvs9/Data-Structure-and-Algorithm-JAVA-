@@ -1,0 +1,36 @@
+lic class Solution {
+    public int solve(int[][] A) {
+        int n=A.length;
+        int m=A[0].length;
+        int sum[]=new int [n];
+        int maxsum=Integer.MIN_VALUE;
+        for(int cstart=0;cstart<m;cstart++){
+            Arrays.fill(sum,0);
+            for(int cend=cstart;cend<m;cend++){
+                for(int i=0;i<n;i++){
+                    sum[i]=sum[i]+A[i][cend];
+                }
+            maxsum=Math.max(kadane(sum),maxsum);
+        }
+        }
+    
+      return maxsum;
+}
+int kadane(int []sum){
+    int currsum=0;
+    int max=Integer.MIN_VALUE;
+    for(int i=0;i<sum.length;i++){
+        currsum=currsum+sum[i];
+        if(currsum>max){
+            max=currsum;
+        }
+    
+    if(currsum<0){
+        currsum=0;
+    }
+    }
+    return max;
+}
+}
+
+     
