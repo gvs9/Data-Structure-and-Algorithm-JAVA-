@@ -1,0 +1,35 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int solve(final String A, final String B) {
+       
+ int i = 0 , j = 0;
+    int n = A.length();
+    int m = B.length();
+
+    while( i < n)
+    {
+        int count = 0;
+        
+        // count how many times the current character is available in string B
+        
+        while(j < m && B.charAt(j) == A.charAt(i))
+        {
+            count++;
+            j++;
+        }
+        
+        // if count does not greater than one, return unmatched
+        
+        if(count == 0)
+            return 0;
+        
+        i++;
+    }
+    
+    // here we are checking whether the strings have been completely used up or not 
+    if(i != n || j != m)
+        return 0;
+    
+    return 1;
+    }
+}
