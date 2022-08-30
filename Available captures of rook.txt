@@ -1,0 +1,69 @@
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        int n=board.length;
+        int m=board[0].length;
+         int rookrow=0;
+        int rookcol=0;
+        int captures=0;
+        
+          //fixed the position of rook
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(board[i][j]=='R'){
+                    rookrow=i;
+                    rookcol=j;
+                    break;
+                }
+            }
+        }
+        
+        //moving top
+        
+        for(int i=rookrow;i>=0;i--){
+            if(board[i][rookcol]=='B'){
+                break;
+            }
+            if(board[i][rookcol]=='p'){
+                captures++;
+                break;
+            }
+        }
+        
+        //moving down
+        
+        for(int i=rookrow;i<m;i++){
+             if(board[i][rookcol]=='B'){
+                break;
+            }
+            if(board[i][rookcol]=='p'){
+                captures++;
+                break;
+            }
+        }
+        
+        //moving left
+        
+         for(int j=rookcol;j>=0;j--){
+             if(board[rookrow][j]=='B'){
+                 break;
+             }
+             if(board[rookrow][j]=='p'){
+                 captures++;
+                 break;
+             }
+         }
+        //moving right
+          
+         for(int j=rookcol;j<n;j++){
+             if(board[rookrow][j]=='B'){
+                 break;
+             }
+             if(board[rookrow][j]=='p'){
+                 captures++;
+                 break;
+             }
+         }
+        return captures;
+    } 
+}
