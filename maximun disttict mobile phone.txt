@@ -1,0 +1,36 @@
+public class Solution {
+    public int[] solve(int[] A, int[] B) {
+    int[] prefixSum = new int[A.length];
+        int[] ans = new int[B.length];
+        prefixSum[0] = A[0];
+       
+        for(int i=0; i<A.length-1; i++){
+            prefixSum[i+1] = prefixSum[i]+A[i+1];
+        }
+
+        for(int i=0; i<B.length; i++){
+            int l = 0;
+            int r = A.length-1;
+            int count =  0;
+            while(l<=r){
+                int m = (l+r)/2;
+
+                if(prefixSum[m] == B[i]){
+                    count = m+1;
+                    break;
+                }
+                else if(prefixSum[m] > B[i]){
+                    r = m-1;
+                }
+                else{
+                    l = m+1;
+                    count = m+1;
+
+                }
+            }
+            ans[i] = count;
+        }
+        return ans;
+    }
+}
+    
